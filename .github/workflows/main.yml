@@ -3,8 +3,6 @@ name: Node.js CI
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
 
 jobs:
   build:
@@ -13,14 +11,13 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Use Node.js
+    - name: Setup Node
       uses: actions/setup-node@v4
       with:
         node-version: '20'
-        cache: 'npm'
 
-    - name: Install dependencies
+    - name: Install
       run: npm install
 
-    - name: Run Application
-      run: npm start
+    - name: Start
+      run: node index.js
