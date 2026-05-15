@@ -1,28 +1,22 @@
 name: Node App
 
 on:
+  push:
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [16.x]
-
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
-          cache: npm
+          node-version: 18
 
-      - name: Install Dependencies
-        run: npm install
+      - run: node -v
 
-      - name: Start Project
-        run: npm start
+      - run: npm install
+
+      - run: npm start
